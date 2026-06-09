@@ -1,0 +1,12 @@
+body{font-family:Arial,Helvetica,sans-serif;background:#f7f7f7;color:#222;padding:20px}
+.container{max-width:800px;margin:0 auto;background:#fff;padding:20px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
+.step{display:none}
+.step.visible{display:block}
+.hidden{display:none}
+.nav{display:flex;gap:10px;margin-top:12px}
+button{padding:8px 12px}
+.subject{border:1px solid #eee;padding:8px;margin:8px 0;border-radius:4px}
+.subject-details{padding:8px;background:#fafafa;margin-top:6px}
+textarea{width:100%;min-height:80px}
+input[type=text],select,input[type=month]{width:100%;padding:6px;margin-top:4px}
+.auth{margin-top:12px}

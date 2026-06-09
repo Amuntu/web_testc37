@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Multi-step Survey</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome</h1>
+    <div id="steps">
+      <!-- Step 1 -->
+      <section class="step" data-step="1">
+        <h2>Welcome</h2>
+        <p>Thank you for participating. Press Next to begin.</p>
+      </section>
+
+      <!-- Step 2: Personal info -->
+      <section class="step" data-step="2">
+        <h2>Personal Information</h2>
+        <label>Full name *<br><input id="fullname" type="text" required></label>
+        <label>Profession *<br><input id="profession" type="text" required></label>
+        <label>Certification giver *<br><input id="cert_giver" type="text" required></label>
+        <label>Date of certificate (MM/YYYY) *<br><input id="cert_date" type="month" required></label>
+      </section>
+
+      <!-- Step 3: Higher degree -->
+      <section class="step" data-step="3">
+        <h2>Higher Degree</h2>
+        <label>Do you have a Master or PhD? *</label>
+        <div>
+          <label><input name="has_degree" type="radio" value="yes"> Yes</label>
+          <label><input name="has_degree" type="radio" value="no" checked> No</label>
+        </div>
+        <div id="degree_fields" class="conditional hidden">
+          <label>Highest degree:<br>
+            <select id="highest_degree">
+              <option value="diploma">Diploma</option>
+              <option value="master">Master</option>
+              <option value="phd">PhD</option>
+            </select>
+          </label>
+          <label>Profession<br><input id="degree_profession" type="text"></label>
+          <label>Institute<br><input id="degree_institute" type="text"></label>
+          <label>Date (MM/YYYY)<br><input id="degree_date" type="month"></label>
+        </div>
+      </section>
+
+      <!-- Step 4: Work -->
+      <section class="step" data-step="4">
+        <h2>Work</h2>
+        <label>Do you work?</label>
+        <div>
+          <label><input name="has_work" type="radio" value="yes"> Yes</label>
+          <label><input name="has_work" type="radio" value="no" checked> No</label>
+        </div>
+        <div id="work_fields" class="conditional hidden">
+          <label>Where do you work? *<br>
+            <select id="work_location">
+              <option value="inside">Inside country</option>
+              <option value="outside">Outside country</option>
+              <option value="online">Online/Remote</option>
+            </select>
+          </label>
+          <label>Institute name *<br><input id="work_institute" type="text"></label>
+          <label>Job title *<br><input id="job_title" type="text"></label>
+          <label>Relation to Mechatronics<br>
+            <select id="work_relation">
+              <option value="fully">Fully connected</option>
+              <option value="partially">Partially connected/related</option>
+              <option value="not">Not at all</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <!-- Step 5: Year 1 (sample with 2 subjects) -->
+      <section class="step" data-step="5">
+        <h2>Year 1</h2>
+        <h3>1st Semester</h3>
+        <div class="subject">
+          <label><input type="checkbox" class="subject-checkbox" data-subject="Math I"> Math I</label>
+          <div class="subject-details hidden" data-for="Math I">
+            <label>Pros (long answer)<br><textarea class="pros"></textarea></label>
+            <label>Cons (long answer)<br><textarea class="cons"></textarea></label>
+            <label>Should this subject be updated?<br>
+              <select class="update-choice"><option value="no">No</option><option value="yes">Yes</option></select>
+            </label>
+            <textarea class="update-text hidden" placeholder="Describe updates..."></textarea>
+            <label>Should it be deleted?<br>
+              <select class="delete-choice"><option value="no">No</option><option value="yes">Yes</option></select>
+            </label>
+            <textarea class="delete-text hidden" placeholder="Why delete?"></textarea>
+            <label>Move to another year/semester?<br>
+              <select class="move-choice"><option value="no">No</option><option value="yes">Yes</option></select>
+            </label>
+            <div class="move-details hidden">
+              <select class="move-year"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+              <select class="move-sem"><option>1</option><option>2</option></select>
+              <textarea class="move-reason" placeholder="Why move?"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="subject">
+          <label><input type="checkbox" class="subject-checkbox" data-subject="Physics I"> Physics I</label>
+          <div class="subject-details hidden" data-for="Physics I">
+            <label>Pros (long answer)<br><textarea class="pros"></textarea></label>
+            <label>Cons (long answer)<br><textarea class="cons"></textarea></label>
+            <label>Should this subject be updated?<br>
+              <select class="update-choice"><option value="no">No</option><option value="yes">Yes</option></select>
+            </label>
+            <textarea class="update-text hidden" placeholder="Describe updates..."></textarea>
+            <label>Should it be deleted?<br>
+              <select class="delete-choice"><option value="no">No</option><option value="yes">Yes</option></select>
+            </label>
+            <textarea class="delete-text hidden" placeholder="Why delete?"></textarea>
+            <label>Move to another year/semester?<br>
+              <select class="move-choice"><option value="no">No</option><option value="yes">Yes</option></select>
+            </label>
+            <div class="move-details hidden">
+              <select class="move-year"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+              <select class="move-sem"><option>1</option><option>2</option></select>
+              <textarea class="move-reason" placeholder="Why move?"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <h3>2nd Semester</h3>
+        <p>(Same pattern — extend as needed)</p>
+
+n        <label>Any new subject suggestion?<br><textarea id="new_subject_suggestion"></textarea></label>
+      </section>
+
+      <!-- Final step -->
+      <section class="step" data-step="10">
+        <h2>Thank you</h2>
+        <p>Press Submit to send your answers.</p>
+      </section>
+    </div>
+
+    <div class="nav">
+      <button id="prev">Back</button>
+      <button id="next">Next</button>
+      <button id="submit" class="hidden">Submit</button>
+    </div>
+
+    <div class="auth">
+      <button id="signin">Sign in with Google</button>
+      <span id="signed-user"></span>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
